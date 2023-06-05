@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+#define ll long long int
+long long maxSubarraySum(int arr[], int n)
+{
+    ll minsum = 0;
+    ll prefixsum = 0;
+    ll ans = -1e18;
+    for (int i =0;i<n;i++){
+        prefixsum += arr[i];
+        ans = max(ans,prefixsum-minsum);
+       minsum  = min(minsum,prefixsum);        
+
+    }
+    if (ans<0)  ans=0;
+    return ans;
+}
