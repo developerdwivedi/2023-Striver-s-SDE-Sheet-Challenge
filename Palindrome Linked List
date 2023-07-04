@@ -1,0 +1,86 @@
+int length(LinkedListNode<int>* head){
+
+    int count = 0;
+
+    LinkedListNode<int>* temp = head;
+
+    while(temp != NULL){
+
+        temp = temp -> next;
+
+        count++;
+
+    }
+
+    return count;
+
+}
+
+ 
+
+bool isPalindrome(LinkedListNode<int> *head) {
+
+    // Write your code here.
+
+    if(head == NULL || head -> next == NULL){
+
+        return true;
+
+    }
+
+    
+
+    int len = length(head);
+
+    int mid = len / 2;
+
+    LinkedListNode<int>* temp = head;
+
+    stack<int> extra;
+
+ 
+
+    int i = 0;
+
+    while(i < mid){
+
+        extra.push(temp -> data);
+
+        temp = temp -> next;
+
+        i++;
+
+    }
+
+ 
+
+    if(len % 2 != 0){
+
+        temp = temp -> next;
+
+    }
+
+ 
+
+    while(!extra.empty()){
+
+        if(temp -> data == extra.top()){
+
+            temp = temp -> next;
+
+            extra.pop();
+
+        }
+
+        else{
+
+            return false;
+
+        }
+
+    }
+
+    return true;
+
+}
+
