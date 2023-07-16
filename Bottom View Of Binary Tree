@@ -1,0 +1,71 @@
+vector<int> bottomView(BinaryTreeNode<int> * root){
+
+ 
+
+    // Write your code here.
+
+    vector<int>ans;                   //create a vector at first;
+
+    if(root==NULL)return ans;           //if root is null return the vector
+
+    map<int,int>mpp;
+
+    queue<pair<BinaryTreeNode<int>*,int>>q;             //implement the queue
+
+    q.push({root,0});                                      // at first push the value in pair to th e queue;
+
+ 
+
+    while(!q.empty())                                     //while q is not empty traverse the queue
+
+    {
+
+        auto it=q.front();                                
+
+        q.pop();
+
+        BinaryTreeNode<int>*Node=it.first;               //first one is the data of the node
+
+        int line=it.second;                        //the second one is the line that can be like (-2,-1,0,1,2)
+
+        mpp[line]=Node->data;
+
+        if(Node->left!=NULL)
+
+        {
+
+            q.push({Node->left,line-1});             //if left node is not null push the value in to the queue
+
+ 
+
+        }
+
+        if(Node->right!=NULL)
+
+        {
+
+            q.push({Node->right,line+1});                 //if the right one is not null push the value in the queue
+
+        }
+
+    }
+
+    for(auto it:mpp)
+
+    {
+
+        ans.push_back(it.second);                  //traverse the whole list and push the answer int ot the ans vector
+
+    }
+
+    return ans;
+
+ 
+
+ 
+
+    
+
+}
+
+ 
