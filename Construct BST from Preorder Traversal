@@ -1,0 +1,16 @@
+TreeNode<int>* solve(vector<int> &preorder, int mini,int maxi,int &i){
+     if(i >= preorder.size())
+         return NULL;
+     
+     if(preorder[i] < mini || preorder[i] > maxi)
+         return NULL;
+     TreeNode<int>* root = new TreeNode<int>(preorder[i++]);
+     root -> left = solve(preorder,mini,root -> data,i);
+     root -> right = solve(preorder,root -> data,maxi,i);
+     return root;
+}
+TreeNode<int>* preOrderTree(vector<int> &preOrder){
+    // Write your code here.
+    int i = 0;
+    return solve(preOrder,INT_MIN,INT_MAX,i);
+}
