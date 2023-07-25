@@ -1,0 +1,29 @@
+void inorder(BinaryTreeNode<int> *root,vector<int>&v){
+
+if(root==NULL) return;
+
+inorder(root->left,v);
+
+v.push_back(root->data);
+
+inorder(root->right,v);
+
+}
+
+ 
+
+int findCeil(BinaryTreeNode<int> *node, int x){
+
+// Write your code here.
+
+vector<int>v;
+
+inorder(node,v);
+
+int lb=lower_bound(v.begin(),v.end(),x)-v.begin();
+
+if(lb>=v.size()) return -1;
+
+return v[lb];
+
+}
